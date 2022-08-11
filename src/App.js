@@ -1,25 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
 
-function App() {
+export default function App() {
+  const [formData, setFormData] = React.useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+    joinNews: false,
+  });
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log(formData);
+  }
+
+  function handleChange(event) {
+    const { name, value, type, checked } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="background">
+        <div className="shape"></div>
+        <div className="shape"></div>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <h3>Login Here</h3>
+
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          placeholder="Email or Phone"
+          id="username"
+          name="username"
+          onChange={handleChange}
+          value={formData.username}
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          name="password"
+          onChange={handleChange}
+          value={formData.password}
+        />
+
+        <label htmlFor="confPassword">Confirm Password</label>
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          id="confPassword"
+          name="confirmPassword"
+          onChange={handleChange}
+          value={formData.confirmPassword}
+        />
+
+        <div className="form--marketing">
+          <label htmlFor="form-mark">I want to join the newsletter</label>
+          <input
+            type="checkbox"
+            name="joinNews"
+            id="form-mark"
+            onChange={handleChange}
+            checked={formData.joinNews}
+          />
+        </div>
+
+        <button>Log In</button>
+      </form>
+    </>
   );
 }
-
-export default App;

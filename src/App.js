@@ -10,8 +10,12 @@ export default function App() {
   });
 
   function handleSubmit(event) {
-    event.preventDefault()
-    console.log(formData);
+    event.preventDefault();
+    if (formData.password === formData.confirmPassword) {
+      console.log(formData);
+    } else {
+      console.log("wrong password");
+    }
   }
 
   function handleChange(event) {

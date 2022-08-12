@@ -12,9 +12,14 @@ export default function App() {
   function handleSubmit(event) {
     event.preventDefault();
     if (formData.password === formData.confirmPassword) {
-      console.log(formData);
+      console.log("Here are the information : " , "\nUsername : " , formData.username , "\nPassword : ", formData.password, "\nJoinNews : ", formData.joinNews);
     } else {
-      console.log("wrong password");
+      console.log("Password do not match !");
+      return
+    }
+
+    if (formData.joinNews) {
+      console.log("Thanks for signing up for our newsletter !")
     }
   }
 
